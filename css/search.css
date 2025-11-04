@@ -1,0 +1,271 @@
+        body {
+           
+            font-family: 'Cairo', sans-serif;
+            /* background-color: #f8f9fa; */
+        }
+        
+        /* --- Top Links Bar (White) --- */
+        .top-links-bar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.5rem 0;
+        }
+        .fill-background {
+         fill: #ffffff;
+         width: 115px;
+            height: 24px;
+        }
+        .top-links-bar .navbar-nav {
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+            flex-wrap: wrap;
+                gap: 70px;
+                   
+        }
+        
+        .top-links-bar .nav-link {
+             color: rgb(213 213 213);
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+        }
+        
+        .top-links-bar .nav-link i {
+            margin-left: 0.25rem;
+        }
+        
+        /* --- Main Nav Bar (Blue) --- */
+        .main-navbar {
+            background-color: #1073c0; 
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .main-navbar .navbar-brand {
+            /* font-size: 2.25rem; */
+            font-weight: 700;
+            color: #ffffff !important;
+        }
+        
+        .main-navbar .nav-link,
+        .main-navbar .btn-login {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.375rem;
+               padding: 5px 10px;
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #0061ad;
+        }
+        
+        .main-navbar .nav-link:hover,
+        .main-navbar .btn-login:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+.login-icon{
+        width: 20px;
+    transform: rotate(180deg);
+}
+        /* --- Search Bar Navbar (White) --- */
+        .search-bar-navbar {
+            background-color: #ffffff;
+            /* border-bottom: 1px solid #dee2e6; */
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+        
+        .btn-brand-orange {
+            background-color: rgb(254 202 129); 
+            color: rgb(58 92 131);
+            font-weight: 600;
+            border: none;
+        }
+        
+        .btn-brand-orange:hover {
+            background-color: #e67e00;
+            color: #ffffff;
+        }
+        
+        .search-group {
+                width: 69%;
+                box-shadow: 3px 2px 9px 0px #80808075;
+                    border-radius: 25px;
+        }
+        
+        .search-group .form-control {
+            border-top-left-radius: 0.375rem;
+            border-bottom-left-radius: 0.375rem;
+            border-top-right-radius: 0.375rem;
+            border-bottom-right-radius: 0.375rem;
+        }
+        
+        .search-group .btn {
+            /* border-top-right-radius: 0.375rem !important; */
+            /* border-bottom-right-radius: 0.375rem !important; */
+            border-top-left-radius: 0.375rem;
+            border-bottom-left-radius: 0.375rem;
+    background-color: rgb(16 115 192);
+    color: #ffffff;
+        padding: 9px 25px;
+
+        }
+        
+        .nav-link.btn-lang, .nav-link.btn-login {
+            font-weight: 500;
+            color: #343a40;
+        }
+        
+          /* --- Filter Bar --- */
+        .filter-bar {
+            padding: 1rem 0;
+            background-color: #ffffff;
+            /* border-bottom: 1px solid #e9ecef; */
+        }
+
+        
+        .filter-bar .btn-filter {
+            font-size: 0.9rem;
+            background-color: #f1f3f5;
+            border-color: #f1f3f5;
+            color: #495057;
+            border-radius: 10px; 
+            padding: 0.5rem 1.25rem;
+            border: none;
+        }
+
+        /* Active state for filter buttons */
+        .filter-bar .btn-filter.active {
+            background-color: #f0f0ff; 
+            color: #005a9c;
+            font-weight: 500;
+        }
+
+        /* Style for dropdown toggles */
+        .filter-bar .filter-dropdown {
+            font-size: 0.9rem;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            color: #495057;
+            border-radius: 0.375rem; 
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 180px; 
+        }
+        /* Remove default Bootstrap arrow and add our own */
+        .filter-bar .filter-dropdown::after {
+            content: '\f282'; /* Bootstrap Icon: chevron-down */
+            font-family: "bootstrap-icons";
+            font-weight: 600;
+            transition: transform 0.2s ease-in-out;
+            border: none;
+            vertical-align: middle;
+            margin-right: auto; 
+            margin-left: 0.5rem; 
+        }
+
+        /* Animate arrow on open */
+        .filter-bar .filter-dropdown[aria-expanded="true"]::after {
+            transform: rotate(180deg);
+        }
+
+        /* Style for the dropdown menu itself */
+        .filter-bar .dropdown-menu {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
+            padding: 0.5rem;
+        }
+
+        /* Style for dropdown items */
+        .filter-bar .dropdown-item {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.9rem;
+        }
+
+        /* Active/hover state for dropdown items */
+        .filter-bar .dropdown-item.active,
+        .filter-bar .dropdown-item:active,
+        .filter-bar .dropdown-item:focus,
+        .filter-bar .dropdown-item:hover {
+            background-color: #f0f8ff; 
+            color: #005a9c;
+        }
+ /* --- Listings --- */
+        .list-group-item {
+            border-width: 0 0 1px 0; 
+            border-bottom: 1px solid #e9ecef; 
+            border-radius: 0;
+            padding: 1.25rem 1rem;
+            background-color: #ffffff; /* Default white background */
+        }
+        
+        /* Zebra-striping: Every even item has a light gray background */
+        .list-group-item:nth-child(even) {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        
+        .list-group-item:last-child {
+            border-bottom-width: 0;
+        }
+
+        .list-group-item img {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 0.375rem;
+        }
+        
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00a651;
+            text-decoration: none;
+        }
+        
+        .item-title:hover {
+            text-decoration: underline;
+        }
+        
+        .item-meta {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .item-meta span {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .item-meta i {
+            margin-left: 0.35rem; 
+        }
+        
+        .item-comments {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .item-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #005a9c; 
+        }
+
+        .item-user-avatar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.25rem;
+        }
