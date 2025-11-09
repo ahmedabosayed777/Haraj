@@ -3,126 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حراج - Haraj Souq</title>
-    <link rel="stylesheet" href="style.css">
+    <title>حراج - Haraj | سوقك الإلكتروني</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">حراج</div>
-                <div class="search-bar">
-                    <input type="text" placeholder="ابحث في حراج...">
-                </div>
-                <div class="user-actions">
-                    <a href="#">تسجيل الدخول</a>
-                    <a href="#">إضافة إعلان</a>
-                </div>
-            </div>
-        </div>
-    </header>
-    
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="container">
-            <ul class="nav-links">
-                <li><a href="#">الرئيسية</a></li>
-                <li><a href="#">سيارات</a></li>
-                <li><a href="#">عقارات</a></li>
-                <li><a href="#">أجهزة</a></li>
-                <li><a href="#">أثاث</a></li>
-                <li><a href="#">وظائف</a></li>
-                <li><a href="#">خدمات</a></li>
+    <!-- Top Links Bar -->
+    <nav class="top-links-bar">
+        <div class="top-links-container">
+            <ul class="top-nav-menu">
+                <li><a href="index.html" class="top-nav-link"><i class="bi bi-house-door"></i> الرئيسية</a></li>
+                <li><a href="#" class="top-nav-link"><i class="bi bi-car-front"></i> حراج السيارات</a></li>
+                <li><a href="#" class="top-nav-link"><i class="bi bi-phone"></i> أجهزة</a></li>
+                <li><a href="#" class="top-nav-link"><i class="bi bi-bug"></i> مواشي و حيوانات و طيور</a></li>
+                <li><a href="#" class="top-nav-link"><i class="bi bi-lamp"></i> اثاث</a></li>
+                <li><a href="search.html" class="top-nav-link"><i class="bi bi-search"></i> البحث</a></li>
+                <li><a href="#" class="top-nav-link"><i class="bi bi-briefcase"></i> خدمات</a></li>
+                <li><a href="#" class="top-nav-link"><i class="bi bi-grid-3x3-gap"></i> أقسام أكثر</a></li>
             </ul>
         </div>
     </nav>
-    
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/logo/harag-logo.svg" alt="حراج" class="logo-img">
+                </a>
+            </div>
+            
+            <div class="header-actions">
+                <a href="#" class="btn-login">دخــــول</a>
+                <button class="lang-btn" title="Change language">En</button>
+                <button class="btn-post-ad">اضافة عرض</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="ابحث عن سلعة...">
+                <button class="search-btn"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="filter-bar">
+        <div class="filter-container">
+            <div class="filter-wrapper">
+                <select class="filter-dropdown" id="filterAll">
+                    <option value="">الكل</option>
+                    <option value="cars">السيارات</option>
+                    <option value="realestate">عقارات</option>
+                    <option value="devices">أجهزة</option>
+                    <option value="furniture">أثاث</option>
+                </select>
+                <button class="btn-filter" id="filterBtn">
+                    <i class="bi bi-funnel"></i> تصفية
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Main Content -->
-    <main>
-        <!-- Categories Section -->
-        <section class="categories">
-            <div class="container">
-                <h2 class="section-title">التصنيفات</h2>
-                <div class="category-grid">
-                    <div class="category-item">سيارات</div>
-                    <div class="category-item">عقارات</div>
-                    <div class="category-item">أجهزة</div>
-                    <div class="category-item">أثاث</div>
-                    <div class="category-item">وظائف</div>
-                    <div class="category-item">خدمات</div>
-                    <div class="category-item">حيوانات</div>
-                    <div class="category-item">ملابس</div>
+    <main class="main-content">
+        <div class="content-container">
+            <!-- Cars Corporate Logos -->
+            <section class="quick-nav-section">
+                <div class="quick-nav-header">
+                    <h3 class="quick-nav-title">تنقل السريع</h3>
+                    <button class="quick-nav-toggle" id="quickNavToggle">
+                        <i class="bi bi-dash"></i>
+                    </button>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Featured Listings -->
-        <section class="featured-listings">
-            <div class="container">
-                <h2 class="section-title">إعلانات مميزة</h2>
-                <div class="listing-grid">
-                    <!-- Listing 1 -->
-                    <div class="listing-card">
-                        <div class="listing-image" style="background-color: #ddd;"></div>
-                        <div class="listing-details">
-                            <div class="listing-price">5,000 ر.س</div>
-                            <h3 class="listing-title">سيارة تويوتا كامري 2020</h3>
-                            <div class="listing-location">الرياض</div>
+                <div class="corporate-logos" id="corporateLogos">
+                    <a href="#" class="logo-item" data-brand="toyota">
+                        <img src="" alt="Toyota" loading="lazy">
+                    </a>
+                    <a href="#" class="logo-item" data-brand="nissan">
+                        <img src="" alt="Nissan" loading="lazy">
+                    </a>
+                    <a href="#" class="logo-item" data-brand="ford">
+                        <img src="" alt="Ford" loading="lazy">
+                    </a>
+                    <a href="#" class="logo-item" data-brand="lexus">
+                        <img src="" alt="Lexus" loading="lazy">
+                    </a>
+                    <a href="#" class="logo-item" data-brand="chevrolet">
+                        <img src="" alt="Chevrolet" loading="lazy">
+                    </a>
+                    <a href="#" class="logo-item" data-brand="mercedes">
+                        <img src="" alt="Mercedes-Benz" loading="lazy">
+                    </a>
+                    <a href="#" class="logo-item" data-brand="gmc">
+                        <img src="" alt="GMC" loading="lazy">
+                    </a>
+                    <a href="#" class="logo-item" data-brand="bmw">
+                        <img src="" alt="BMW" loading="lazy">
+                    </a>
+                    <a href="#" class="logo-item" data-brand="dodge">
+                        <img src="" alt="Dodge" loading="lazy">
+                    </a>
+                </div>
+            </section>
+
+            <!-- Categories Grid -->
+            <section class="categories-section">
+                <div class="categories-grid">
+                    <a href="#" class="category-card" data-category="cars">
+                        <div class="category-icon">🚗</div>
+                        <h3>السيارات</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="realestate">
+                        <div class="category-icon">🏠</div>
+                        <h3>عقارات</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="devices">
+                        <div class="category-icon">📱</div>
+                        <h3>أجهزة</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="animals">
+                        <div class="category-icon">🐕</div>
+                        <h3>حيوانات</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="furniture">
+                        <div class="category-icon">🪑</div>
+                        <h3>أثاث</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="jobs">
+                        <div class="category-icon">💼</div>
+                        <h3>وظائف</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="services">
+                        <div class="category-icon">🔧</div>
+                        <h3>خدمات</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="fashion">
+                        <div class="category-icon">👕</div>
+                        <h3>أزياء</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="games">
+                        <div class="category-icon">🎮</div>
+                        <h3>العاب</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="rarities">
+                        <div class="category-icon">💎</div>
+                        <h3>نوادر</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="art">
+                        <div class="category-icon">🎨</div>
+                        <h3>الفنون</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="trips">
+                        <div class="category-icon">✈️</div>
+                        <h3>الرحلات</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="food">
+                        <div class="category-icon">🍔</div>
+                        <h3>أطعمة</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="gardens">
+                        <div class="category-icon">🌳</div>
+                        <h3>الحدائق</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="occasions">
+                        <div class="category-icon">🎉</div>
+                        <h3>مناسبات</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="tourism">
+                        <div class="category-icon">🏖️</div>
+                        <h3>سياحة</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="lost">
+                        <div class="category-icon">🔍</div>
+                        <h3>مفقودات</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="coach">
+                        <div class="category-icon">🏋️</div>
+                        <h3>تدريب</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="code">
+                        <div class="category-icon">💻</div>
+                        <h3>برمجة</h3>
+                    </a>
+                    <a href="#" class="category-card" data-category="more">
+                        <div class="category-icon">➕</div>
+                        <h3>المزيد</h3>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Slider Section -->
+            <section class="slider-section">
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                        <div class="slider-track" id="sliderTrack">
+                            <div class="slider-slide active">
+                                <div class="slider-content">
+                                    <img src="assets/product-img-1.png" alt="إعلان 1" class="slider-image">
+                                    <div class="slider-overlay">
+                                        <h3 class="slider-title">منتج مميز للبيع</h3>
+                                        <p class="slider-description">عرض خاص على منتجات عالية الجودة</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slider-slide">
+                                <div class="slider-content">
+                                    <img src="assets/2016-09-06-what-is-a-product.png" alt="إعلان 2" class="slider-image">
+                                    <div class="slider-overlay">
+                                        <h3 class="slider-title">عروض حصرية</h3>
+                                        <p class="slider-description">اكتشف أفضل العروض والصفقات</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slider-slide">
+                                <div class="slider-content">
+                                    <img src="assets/product-img-1.png" alt="إعلان 3" class="slider-image">
+                                    <div class="slider-overlay">
+                                        <h3 class="slider-title">منتجات جديدة</h3>
+                                        <p class="slider-description">تصفح أحدث المنتجات المضافة</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- Listing 2 -->
-                    <div class="listing-card">
-                        <div class="listing-image" style="background-color: #ddd;"></div>
-                        <div class="listing-details">
-                            <div class="listing-price">800,000 ر.س</div>
-                            <h3 class="listing-title">فيلا للبيع في حي النخيل</h3>
-                            <div class="listing-location">جدة</div>
-                        </div>
+                    <button class="slider-btn prev" id="prevBtn"><i class="bi bi-chevron-right"></i></button>
+                    <button class="slider-btn next" id="nextBtn"><i class="bi bi-chevron-left"></i></button>
+                    <div class="slider-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
                     </div>
-                    
-                    <!-- Add more listings as needed -->
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Recent Listings -->
+            <section class="listings-section">
+                <div class="listings-list" id="listingsList">
+                    <div class="listing-item" data-category="realestate" data-location="riyadh" data-product-id="1">
+                        <div class="listing-info">
+                            <a href="product.html?id=1&title=3020%20نمار%20شقه%20دور%20ثاني&category=realestate&location=riyadh" class="listing-title">3020 نمار شقه دور ثاني</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> الرياض</span>
+                                <span><i class="bi bi-clock"></i> قبل 09 دقيقة</span>
+                                <span><span class="user-avatar">ر</span> user</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&h=300&fit=crop" alt="شقة" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="services" data-location="safwa" data-product-id="2">
+                        <div class="listing-info">
+                            <a href="product.html?id=2&title=pipe%2010%20inch&category=services&location=safwa" class="listing-title">pipe 10 inch</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> صفوى</span>
+                                <span><i class="bi bi-clock"></i> قبل 01 دقيقة</span>
+                                <span><span class="user-avatar">M</span> mohmd ashab</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop" alt="Pipe" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="furniture" data-location="dhahran" data-price="2500" data-product-id="3">
+                        <div class="listing-price">2500 ر.س</div>
+                        <div class="listing-info">
+                            <a href="product.html?id=3&title=كنب%20بحالة%20الجديد&category=furniture&location=dhahran&price=2500" class="listing-title">كنب بحالة الجديد</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> الظهران</span>
+                                <span><i class="bi bi-clock"></i> قبل 06 دقيقة</span>
+                                <span><span class="user-avatar">ا</span> -2ابراهيم</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="كنب" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="animals" data-location="riyadh" data-product-id="4">
+                        <div class="listing-info">
+                            <a href="product.html?id=4&title=فرس%20شعبيه%20فاخره&category=animals&location=riyadh" class="listing-title">فرس شعبيه فاخره</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> الرياض</span>
+                                <span><i class="bi bi-clock"></i> قبل 00 دقيقة</span>
+                                <span><i class="bi bi-person"></i> 1.... عضو</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=400&h=300&fit=crop" alt="فرس" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="devices" data-location="riyadh" data-product-id="5">
+                        <div class="listing-info">
+                            <a href="product.html?id=5&title=iPhone%2017pro%201tb&category=devices&location=riyadh" class="listing-title">iPhone 17pro 1tb</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> الرياض</span>
+                                <span><i class="bi bi-clock"></i> الآن</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop" alt="iPhone" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="furniture" data-location="tabuk" data-product-id="6">
+                        <div class="listing-info">
+                            <a href="product.html?id=6&title=ديوانية%20بكامل%20تجهيزاتها%20لبيع&category=furniture&location=tabuk" class="listing-title">ديوانية بكامل تجهيزاتها لبيع</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> تبوك</span>
+                                <span><i class="bi bi-clock"></i> الآن</span>
+                                <span><span class="user-avatar">ا</span>الدرع f1</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="ديوانية" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="cars" data-location="riyadh" data-brand="toyota" data-product-id="7">
+                        <div class="listing-info">
+                            <a href="product.html?id=7&title=سيارة%20تويوتا%20كامري%202020&category=cars&location=riyadh&brand=toyota" class="listing-title">سيارة تويوتا كامري 2020</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> الرياض</span>
+                                <span><i class="bi bi-clock"></i> قبل ساعتين</span>
+                                <span><span class="user-avatar">ع</span> أحمد محمد</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=300&fit=crop" alt="تويوتا كامري" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="cars" data-location="jeddah" data-brand="nissan" data-product-id="8">
+                        <div class="listing-price">85,000 ر.س</div>
+                        <div class="listing-info">
+                            <a href="product.html?id=8&title=سيارة%20نيسان%20باترول%202019&category=cars&location=jeddah&brand=nissan&price=85000" class="listing-title">سيارة نيسان باترول 2019</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> جدة</span>
+                                <span><i class="bi bi-clock"></i> قبل 3 ساعات</span>
+                                <span><span class="user-avatar">س</span> سعيد علي</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" alt="نيسان باترول" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="devices" data-location="dammam" data-product-id="9">
+                        <div class="listing-price">3,800 ر.س</div>
+                        <div class="listing-info">
+                            <a href="product.html?id=9&title=سامسونج%20جالاكسي%20S23&category=devices&location=dammam&price=3800" class="listing-title">سامسونج جالاكسي S23</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> الدمام</span>
+                                <span><i class="bi bi-clock"></i> قبل ساعة</span>
+                                <span><span class="user-avatar">خ</span> خالد</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="سامسونج" class="listing-thumb">
+                    </div>
+                    <div class="listing-item" data-category="realestate" data-location="riyadh" data-product-id="10">
+                        <div class="listing-price">850,000 ر.س</div>
+                        <div class="listing-info">
+                            <a href="product.html?id=10&title=فيلا%20للبيع%205%20غرف&category=realestate&location=riyadh&price=850000" class="listing-title">فيلا للبيع 5 غرف</a>
+                            <div class="listing-meta">
+                                <span><i class="bi bi-geo-alt"></i> الرياض</span>
+                                <span><i class="bi bi-clock"></i> قبل 30 دقيقة</span>
+                                <span><span class="user-avatar">ف</span> فهد</span>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&h=300&fit=crop" alt="فيلا" class="listing-thumb">
+                    </div>
+                </div>
+                <div class="view-more-container">
+                    <a href="#" class="view-more-btn">مشاهدة المزيد...</a>
+                </div>
+            </section>
+        </div>
     </main>
-    
+
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>عن حراج</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">من نحن</a></li>
-                        <li><a href="#">اتصل بنا</a></li>
-                        <li><a href="#">الشروط والأحكام</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>المساعدة</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">كيفية البيع والشراء</a></li>
-                        <li><a href="#">الأسئلة الشائعة</a></li>
-                        <li><a href="#">مركز المساعدة</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>تابعنا</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">تويتر</a></li>
-                        <li><a href="#">فيسبوك</a></li>
-                        <li><a href="#">انستقرام</a></li>
-                    </ul>
-                </div>
+    <footer class="main-footer">
+        <div class="footer-stores">
+            <img src="assets/app-store-badge.webp" alt="App Store">
+            <img src="assets/google-play-badge.webp" alt="Google Play">
+            <img src="assets/huawei-badge-black.webp" alt="Huawei App Store" style="width: 140px;">
+        </div>
+        <div class="footer-val">
+            <div class="val-text">
+                <h4>قسم العقارات في منصة حراج يتم تشغيلة بواسطة</h4>
+                <div>رخصة فال للوساطة و التسويق رقم 1200006871</div>
             </div>
-            <div class="copyright">
-                &copy; 2025 حراج. جميع الحقوق محفوظة.
+            <div class="val-logos">
+                <img src="assets/deal_logo.svg" alt="Deal Logo">
+                <img src="assets/fal_logo.png" alt="Fal Logo">
+            </div>
+        </div>
+        <hr>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">تسجيل</a></li>
+                <li><a href="#">الاشتراك السنوي للمتجر</a></li>
+                <li><a href="#">توثيق العضوية و إضافة التراخيص</a></li>
+                <li><a href="#">نظام الخصم</a></li>
+                <li><a href="#">الأسئلة الشائعة</a></li>
+                <li><a href="#">اتصل بنا</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">حساب و سداد رسوم الموقع</a></li>
+                <li><a href="#">زيادة مشاهدات العروض</a></li>
+                <li><a href="#">مركز الأمان</a></li>
+                <li><a href="#">الحسابات والأرقام الموقوفة</a></li>
+                <li><a href="#">سياسة الخصوصية</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">العروض المميزة</a></li>
+                <li><a href="#">اتفاقية الاستخدام</a></li>
+                <li><a href="#">نظام التقييم</a></li>
+                <li><a href="#">قائمة السلع والعروض الممنوعة</a></li>
+                <li><a href="#">سياسة الملكية الفكرية</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="footer-social">
+            <div class="social-icons">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-snapchat"></i></a>
+                <a href="#"><i class="bi bi-tiktok"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+            <div class="footer-version">
+                <p>مؤسسة موقع حراج لتقنية المعلومات</p>
+                <p>N0.0.1 , 2025-10-29 18</p>
+                <p>الرقم الضريبي: 300710482300003</p>
             </div>
         </div>
     </footer>
 
-    <script src="index.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
+

@@ -14,19 +14,19 @@
 <body>
     <nav class="upper-header">
         <ul class="upper-header-items">
-            <li><a href="#"> الرئيسية <span><i class="fa-solid fa-house"></i></span></a></li>
+            <li><a href="index.html"> الرئيسية <span><i class="fa-solid fa-house"></i></span></a></li>
             <li><a href="#"> حراج السيارات <span><i class="fa-solid fa-car"></i></span></a></li>
             <li><a href="#"> أجهزة <span><i class="fa-solid fa-mobile"></i></span></a></li>
             <li><a href="#"> مواشي و حيوانات و طيور <span><i class="fa-solid fa-paw"></i></span></a></li>
             <li><a href="#"> اثاث <span><i class="fa-solid fa-couch"></i></span></a></li>
-            <li><a href="#"> البحث <span><i class="fa-solid fa-magnifying-glass"></i></span></a></li>
+            <li><a href="search.html"> البحث <span><i class="fa-solid fa-magnifying-glass"></i></span></a></li>
             <li><a href="#"> خدمات <span><i class="fa-solid fa-cube"></i></span></a></li>
             <li><a href="#"> أقسام أكثر <span><i class="fa-solid fa-sitemap"></i></span></a></li>
         </ul>
     </nav>
     <nav class="sec-nav">
     <div class="sec-header-items">
-        <img src="assets\logo\harag-logo.svg" alt="harag-logo" class="logo" />
+        <a href="index.html"><img src="assets\logo\harag-logo.svg" alt="harag-logo" class="logo" /></a>
         <div class="buttons">
             <button>دخــــول <span><i class="fa-solid fa-right-to-bracket"></i></span>
                 <button title="Change language">En</button>
@@ -38,28 +38,30 @@
     <div class="col-1">
         <div class="navigator">
             <i class="fa-solid fa-arrow-right"></i>
-            <a href="#" style="margin:0px 5px;">القسم الرئيسي</a>
+            <a href="index.html" style="margin:0px 5px;">الرئيسية</a>
             <span style="margin:0px 5px;"> / </span>
-            <a href="#" style="margin:0px 5px;">القسم الفرعي</a>
+            <a href="search.html" style="margin:0px 5px;">البحث</a>
+            <span style="margin:0px 5px;"> / </span>
+            <a href="#" id="categoryLink" style="margin:0px 5px;">القسم</a>
         </div>
         <div class="hero-product">
 
             <div class="product-info">
                 <div class="product-name-price">
-                    <div class="product-name"> إسم المنتج </div>
-                    <div class="product-price">
-                        <div class="price">100</div>
+                    <div class="product-name" id="productName"> إسم المنتج </div>
+                    <div class="product-price" id="productPriceContainer">
+                        <div class="price" id="productPrice">100</div>
                         <img src="assets\logo\Saudi_Riyal_Symbol-2.svg" style="width: 18px;" />
                     </div>
 
                 </div>
                 <div class="product-LocationTime">
-                    <div class="area"> مكة <span><i class="fa-solid fa-location-dot"></i></span></div>
+                    <div class="area" id="productLocation"> مكة <span><i class="fa-solid fa-location-dot"></i></span></div>
                     <div class="time-ago"> منذ 4 دقائق <span><i class="fa-solid fa-clock"></i></span></div>
                 </div>
                 <div class="product-owner">
-                    <div class="avatar">a</div>
-                    <div class="owner-name">إسم البائع</div>
+                    <div class="avatar" id="productOwnerAvatar">a</div>
+                    <div class="owner-name" id="productOwnerName">إسم البائع</div>
                     <button class="follow">متابعة</button>
                 </div>
             </div>
@@ -73,7 +75,7 @@
             </div>
         </div>
         <div style="display: flex; flex-direction: row-reverse;">
-            <div class="product-id">#169164243</div>
+            <div class="product-id" id="productId">#169164243</div>
         </div>
             <ul class="product-actions">
                 <li><button> مراسلة <span><i class="fa-solid fa-message"></i></span></button></li>
@@ -82,8 +84,8 @@
                 <li><button> بلاغ <span><i class="fa-solid fa-flag"></i></span></button></li>
             </ul>
             <div class="categories-2">
-                <button>القسم الرئيسي</button>
-                <button>القسم الفرعي</button>
+                <button id="mainCategoryBtn">القسم الرئيسي</button>
+                <button id="subCategoryBtn">القسم الفرعي</button>
             </div>
             <div class="mediator">
                 <div class="mediator-img"></div>
@@ -224,7 +226,95 @@
         <p>الرقم الضريبي: 300710482300003</p>
     </div>
 </div>
-</footer>
+    </footer>
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const productTitle = urlParams.get('title');
+        const productCategory = urlParams.get('category');
+        const productLocation = urlParams.get('location');
+        const productPrice = urlParams.get('price');
+        const productBrand = urlParams.get('brand');
+        
+        // Update product information if parameters exist
+        if (productTitle) {
+            const productNameEl = document.getElementById('productName');
+            if (productNameEl) {
+                productNameEl.textContent = decodeURIComponent(productTitle);
+            }
+        }
+        
+        if (productPrice) {
+            const productPriceEl = document.getElementById('productPrice');
+            if (productPriceEl) {
+                productPriceEl.textContent = parseInt(productPrice).toLocaleString('ar-SA');
+            }
+        } else {
+            // Hide price if not provided
+            const productPriceContainer = document.getElementById('productPriceContainer');
+            if (productPriceContainer) {
+                productPriceContainer.style.display = 'none';
+            }
+        }
+        
+        if (productLocation) {
+            const locationMap = {
+                'riyadh': 'الرياض',
+                'jeddah': 'جدة',
+                'dammam': 'الدمام',
+                'dhahran': 'الظهران',
+                'tabuk': 'تبوك',
+                'safwa': 'صفوى'
+            };
+            const productLocationEl = document.getElementById('productLocation');
+            if (productLocationEl) {
+                const locationName = locationMap[productLocation] || productLocation;
+                productLocationEl.innerHTML = locationName + ' <span><i class="fa-solid fa-location-dot"></i></span>';
+            }
+        }
+        
+        if (productCategory) {
+            const categoryMap = {
+                'cars': 'السيارات',
+                'realestate': 'عقارات',
+                'devices': 'أجهزة',
+                'furniture': 'أثاث',
+                'animals': 'حيوانات',
+                'services': 'خدمات'
+            };
+            const categoryName = categoryMap[productCategory] || productCategory;
+            const mainCategoryBtn = document.getElementById('mainCategoryBtn');
+            const subCategoryBtn = document.getElementById('subCategoryBtn');
+            const categoryLink = document.getElementById('categoryLink');
+            
+            if (mainCategoryBtn) {
+                mainCategoryBtn.textContent = categoryName;
+            }
+            if (subCategoryBtn) {
+                subCategoryBtn.textContent = categoryName;
+            }
+            if (categoryLink) {
+                categoryLink.textContent = categoryName;
+            }
+        }
+        
+        if (productId) {
+            const productIdEl = document.getElementById('productId');
+            if (productIdEl) {
+                productIdEl.textContent = '#' + productId;
+            }
+        }
+        
+        // Set owner avatar based on first letter of title
+        if (productTitle) {
+            const firstLetter = decodeURIComponent(productTitle).charAt(0);
+            const productOwnerAvatar = document.getElementById('productOwnerAvatar');
+            if (productOwnerAvatar) {
+                productOwnerAvatar.textContent = firstLetter;
+            }
+        }
+    </script>
 </body>
 
 
