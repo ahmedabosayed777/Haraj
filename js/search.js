@@ -1,88 +1,112 @@
-// Search Page Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Get URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchQuery = urlParams.get('q');
-    const categoryFilter = urlParams.get('category');
-    
-    // Set search input value if query exists
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput && searchQuery) {
-        searchInput.value = decodeURIComponent(searchQuery);
-    }
-    
-    // Filter listings based on search query and category
-    if (searchQuery || categoryFilter) {
-        filterListings(searchQuery, categoryFilter);
-    }
-    
-    // Search button functionality
-    const searchBtn = document.getElementById('searchBtn');
-    if (searchBtn) {
-        searchBtn.addEventListener('click', function() {
-            performSearch();
-        });
-    }
-    
-    // Enter key in search input
-    if (searchInput) {
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-    }
-    
-    function performSearch() {
-        const query = searchInput.value.trim();
-        if (query) {
-            let searchUrl = 'search.html?q=' + encodeURIComponent(query);
-            window.location.href = searchUrl;
-        }
-    }
-    
-    function filterListings(query, category) {
-        const listings = document.querySelectorAll('.list-group-item');
-        let visibleCount = 0;
-        
-        listings.forEach(listing => {
-            const title = listing.querySelector('.item-title').textContent.toLowerCase();
-            const listingCategory = listing.getAttribute('data-category') || '';
-            
-            const matchesQuery = !query || title.includes(query.toLowerCase());
-            const matchesCategory = !category || listingCategory === category;
-            
-            if (matchesQuery && matchesCategory) {
-                listing.style.display = 'flex';
-                visibleCount++;
-            } else {
-                listing.style.display = 'none';
-            }
-        });
-        
-        // Show no results message if needed
-        if (visibleCount === 0) {
-            showNoResults();
-        } else {
-            hideNoResults();
-        }
-    }
-    
-    function showNoResults() {
-        const container = document.querySelector('.container .row');
-        if (container && !container.querySelector('.no-results')) {
-            const noResults = document.createElement('div');
-            noResults.className = 'no-results text-center p-5';
-            noResults.innerHTML = '<p class="text-muted">لم يتم العثور على نتائج</p>';
-            container.appendChild(noResults);
-        }
-    }
-    
-    function hideNoResults() {
-        const noResults = document.querySelector('.no-results');
-        if (noResults) {
-            noResults.remove();
-        }
-    }
+const listings = [];
+const listingElements = document.querySelectorAll(".listing-item");
+
+listingElements.forEach(item => {
+  const titleEl = item.querySelector(".listing-title");
+  const title = titleEl.textContent.trim();
+  const url = titleEl.href;
+  const category = item.dataset.category;
+  const location = item.dataset.location; 
+  const productId = item.dataset.productId;
+  const imgSrc = item.querySelector(".listing-thumb").src;
+const time = item.querySelector(".listing-meta i.bi-clock")?.parentElement.textContent.trim() || "";
+const userAvatar = item.querySelector(".user-avatar")?.textContent.trim() || "";
+const userName = item.querySelector(".listing-meta span:last-child")?.textContent.replace(userAvatar, "").trim() || "";
+const condition = item.dataset.condition || "";
+
+  listings.push({ 
+  title, 
+  url, 
+  category, 
+  location, 
+  productId, 
+  imgSrc,
+  time,
+  userAvatar,
+  userName,
+  condition
 });
 
+});
+const locationMap = {
+  "riyadh": "الرياض",
+  "jeddah": "جده",
+  "dammam": "الدمام",
+  "safwa": "صفوى"
+};
+
+const resultsContainer = document.getElementById("listingsList");
+const searchInput = document.getElementById("searchInput");
+
+
+function displayResults(results) {
+  resultsContainer.innerHTML = "";
+  results.forEach(item => {
+  resultsContainer.innerHTML += `
+  <div class="listing-item" data-category="${item.category}" data-location="${item.location}" data-product-id="${item.productId}" data-condition="${item.condition || ''}">
+    <div class="listing-info">
+      <a href="${item.url}" class="listing-title">${item.title}</a>
+      <div class="listing-meta">
+        <span><i class="bi bi-geo-alt"></i> ${locationMap[item.location] || item.location}</span>
+
+        <span><i class="bi bi-clock"></i> ${item.time || ''}</span>
+        <span><span class="user-avatar">${item.userAvatar || ''}</span> ${item.userName || ''}</span>
+      </div>
+    </div>
+    <img src="${item.imgSrc}" alt="${item.title}" class="listing-thumb">
+  </div>
+`;
+
+  });
+}
+
+// ---------------    search -----------------
+searchInput.addEventListener("input", e => {
+  const term = e.target.value.trim().toLowerCase();
+  const results = listings.filter(item => 
+    item.title.toLowerCase().includes(term)
+  );
+  displayResults(results);
+});
+
+// ---------------   filter by location -----------------
+const locationDropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item");
+
+locationDropdownItems.forEach(item => {
+  item.addEventListener("click", e => {
+    e.preventDefault();
+    
+    const selectedLocation = item.dataset.value; 
+    
+    
+    item.closest(".dropdown").querySelector(".filter-dropdown").textContent = item.textContent.trim();
+
+    let results;
+    if (selectedLocation === "all") {
+      results = listings; 
+    } else {
+      results = listings.filter(item => item.location === selectedLocation);
+    }
+
+    displayResults(results);
+  });
+});
+
+
+displayResults(listings);
+
+// ---------------   filter by new -----------------
+const btnNewOnly = document.getElementById("btnNewOnly");
+let showNewOnly = false;
+
+btnNewOnly.addEventListener("click", () => {
+  showNewOnly = !showNewOnly; 
+  btnNewOnly.classList.toggle("active", showNewOnly); 
+
+  let results = listings;
+  if (showNewOnly) {
+    results = listings.filter(item => item.condition === "new");
+  }
+
+  displayResults(results);
+});

@@ -10,11 +10,12 @@
     margin: 0;
     padding:0;
     box-sizing: content-box;
-    font-family:'Sky' ;
+    /* font-family:'Sky' ; */
     
 }
 body{
     background-color: #f2f4fa;
+    font-family: 'Cairo', sans-serif !important;
 }
 
 .upper-header{
