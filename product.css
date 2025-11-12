@@ -489,6 +489,7 @@ footer {
 }
 
 .lists-container {
+    direction: ltr;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-evenly;
