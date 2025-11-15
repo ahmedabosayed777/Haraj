@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haraj API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #1073c0;
+            border-bottom: 3px solid #1073c0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #005a9c;
+            margin-top: 30px;
+            border-left: 4px solid #1073c0;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #1073c0;
+            margin-top: 20px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #1073c0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #1073c0;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        .success {
+            background-color: #d4edda;
+            padding: 15px;
+            border-left: 4px solid #28a745;
+            margin: 20px 0;
+        }
+        .error {
+            background-color: #f8d7da;
+            padding: 15px;
+            border-left: 4px solid #dc3545;
+            margin: 20px 0;
+        }
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        @media print {
+            body {
+                max-width: 100%;
+            }
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            pre, .highlight, .success, .error {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Haraj API Documentation</h1>
+    <p><strong>Simple Guide to Understanding the API and Code</strong></p>
+    
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#what-is-this-api">What is This API?</a></li>
+        <li><a href="#how-does-it-work">How Does It Work?</a></li>
+        <li><a href="#api-endpoints-explained">API Endpoints Explained</a></li>
+        <li><a href="#code-explanation">Code Explanation</a></li>
+        <li><a href="#how-to-use-the-api">How to Use the API</a></li>
+    </ol>
+
+    <h2 id="what-is-this-api">1. What is This API?</h2>
+    <p>The Haraj API is a <strong>RESTful API</strong> (a way for different applications to talk to each other) that manages products for an online marketplace. Think of it as a <strong>middleman</strong> between your website and the database.</p>
+    
+    <h3>What It Does:</h3>
+    <ul>
+        <li>Stores product information in a MongoDB database</li>
+        <li>Allows you to create, read, update, and delete products</li>
+        <li>Lets you search and filter products</li>
+        <li>Tracks how many times a product has been viewed</li>
+    </ul>
+
+    <h3>Key Components:</h3>
+    <ol>
+        <li><strong>Server</strong> (<code>server.js</code>) - The main application that handles requests</li>
+        <li><strong>Routes</strong> (<code>routes/products.js</code>) - Defines what happens when you visit different URLs</li>
+        <li><strong>Model</strong> (<code>models/Product.js</code>) - Defines the structure of a product in the database</li>
+    </ol>
+
+    <h2 id="how-does-it-work">2. How Does It Work?</h2>
+    <h3>The Flow:</h3>
+    <pre>User Request → Server → Database → Server → Response to User</pre>
+    
+    <ol>
+        <li><strong>User sends a request</strong> (like "get all products")</li>
+        <li><strong>Server receives the request</strong> and processes it</li>
+        <li><strong>Server talks to MongoDB</strong> to get or save data</li>
+        <li><strong>Server sends back a response</strong> with the data or a message</li>
+    </ol>
+
+    <h3>Example:</h3>
+    <ul>
+        <li>User visits: <code>http://localhost:3000/api/products</code></li>
+        <li>Server looks in the database for all products</li>
+        <li>Server sends back a list of products in JSON format</li>
+    </ul>
+
+    <h2 id="api-endpoints-explained">3. API Endpoints Explained</h2>
+    <p>An <strong>endpoint</strong> is a specific URL that does a specific job. Think of it like different doors in a building - each door leads to a different room.</p>
+
+    <h3>1. Get All Products</h3>
+    <p><strong>URL:</strong> <code>GET /api/products</code></p>
+    <p><strong>What it does:</strong> Returns a list of all products in the database</p>
+    
+    <p><strong>Optional Filters (add to URL):</strong></p>
+    <ul>
+        <li><code>?category=cars</code> - Only show cars</li>
+        <li><code>?location=riyadh</code> - Only show products in Riyadh</li>
+        <li><code>?brand=toyota</code> - Only show Toyota products</li>
+        <li><code>?minPrice=1000&maxPrice=50000</code> - Show products between these prices</li>
+        <li><code>?page=1&limit=10</code> - Show 10 products per page</li>
+        <li><code>?status=active</code> - Only show active products</li>
+    </ul>
+
+    <h3>2. Get One Product by ID</h3>
+    <p><strong>URL:</strong> <code>GET /api/products/:id</code></p>
+    <p><strong>What it does:</strong> Returns details of one specific product</p>
+    <p><strong>Example:</strong> <code>GET /api/products/6918386fc8aa88773214fcb2</code></p>
+    <p><strong>What happens:</strong></p>
+    <ul>
+        <li>Finds the product with that ID</li>
+        <li>Automatically increases the view count by 1</li>
+        <li>Returns the product details</li>
+    </ul>
+
+    <h3>3. Create a New Product</h3>
+    <p><strong>URL:</strong> <code>POST /api/products</code></p>
+    <p><strong>What it does:</strong> Adds a new product to the database</p>
+    
+    <p><strong>Required Information:</strong></p>
+    <ul>
+        <li><code>title</code> - Product name (required)</li>
+        <li><code>category</code> - Product category (required)</li>
+        <li><code>price</code> - Product price (required)</li>
+        <li><code>location</code> - Where the product is located (required)</li>
+    </ul>
+
+    <p><strong>Optional Information:</strong></p>
+    <ul>
+        <li><code>description</code> - More details about the product</li>
+        <li><code>brand</code> - Brand name (for cars, etc.)</li>
+        <li><code>images</code> - Array of image URLs</li>
+        <li><code>owner</code> - Information about the seller (name, phone, email)</li>
+        <li><code>status</code> - active, sold, pending, or inactive</li>
+    </ul>
+
+    <h3>4. Update a Product</h3>
+    <p><strong>URL:</strong> <code>PUT /api/products/:id</code></p>
+    <p><strong>What it does:</strong> Updates information about an existing product</p>
+    <p><strong>Example:</strong> <code>PUT /api/products/6918386fc8aa88773214fcb2</code></p>
+    <p><strong>You can update:</strong> Price, Status, Description, or any other field</p>
+
+    <h3>5. Delete a Product</h3>
+    <p><strong>URL:</strong> <code>DELETE /api/products/:id</code></p>
+    <p><strong>What it does:</strong> Removes a product from the database permanently</p>
+    <div class="error"><strong>Warning:</strong> This action cannot be undone!</div>
+
+    <h3>6. Search Products</h3>
+    <p><strong>URL:</strong> <code>GET /api/products/search</code></p>
+    <p><strong>What it does:</strong> Searches for products by keywords</p>
+    <p><strong>Parameters:</strong></p>
+    <ul>
+        <li><code>?q=تويوتا</code> - Search for products containing "تويوتا"</li>
+        <li><code>?category=cars</code> - Filter by category</li>
+        <li><code>?location=riyadh</code> - Filter by location</li>
+        <li><code>?brand=toyota</code> - Filter by brand</li>
+    </ul>
+
+    <h2 id="code-explanation">4. Code Explanation</h2>
+    
+    <h3>File 1: server.js - The Main Server</h3>
+    <p>This is the <strong>heart</strong> of your API. It sets up everything and starts the server.</p>
+
+    <h4>What Each Part Does:</h4>
+    <pre><code>const express = require('express');</code></pre>
+    <p><strong>Meaning:</strong> Import Express library - this helps us create the web server</p>
+
+    <pre><code>const mongoose = require('mongoose');</code></pre>
+    <p><strong>Meaning:</strong> Import Mongoose - this helps us talk to MongoDB database</p>
+
+    <pre><code>const app = express();</code></pre>
+    <p><strong>Meaning:</strong> Create an Express application (our server)</p>
+
+    <pre><code>app.use(cors());</code></pre>
+    <p><strong>Meaning:</strong> Allow other websites to use this API (security setting)</p>
+
+    <pre><code>app.use(express.json());</code></pre>
+    <p><strong>Meaning:</strong> Allow the server to understand JSON data (the format we use to send data)</p>
+
+    <pre><code>mongoose.connect(MONGODB_URI)</code></pre>
+    <p><strong>Meaning:</strong> Connect to the MongoDB database</p>
+
+    <pre><code>app.use('/api/products', productsRoutes);</code></pre>
+    <p><strong>Meaning:</strong> When someone visits <code>/api/products</code>, use the routes defined in <code>products.js</code></p>
+
+    <pre><code>app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});</code></pre>
+    <p><strong>Meaning:</strong> Start the server and listen for requests on port 3000</p>
+
+    <h3>File 2: routes/products.js - The Routes</h3>
+    <p>This file defines <strong>what happens</strong> when someone visits different URLs.</p>
+
+    <h4>GET All Products Route:</h4>
+    <pre><code>router.get('/', async (req, res) => {
+  const { category, location, brand } = req.query;
+  const query = {};
+  if (category) query.category = category;
+  const products = await Product.find(query);
+  res.json({ success: true, data: products });
+});</code></pre>
+    <p><strong>Meaning:</strong> When someone visits <code>/api/products</code> with GET request, get filter parameters, search the database, and send back the products.</p>
+
+    <h4>POST Create Product Route:</h4>
+    <pre><code>router.post('/', async (req, res) => {
+  const product = new Product(req.body);
+  const savedProduct = await product.save();
+  res.status(201).json({ success: true, data: savedProduct });
+});</code></pre>
+    <p><strong>Meaning:</strong> When someone sends a POST request, create a new product from the data sent, save it to the database, and send back a success message.</p>
+
+    <h3>File 3: models/Product.js - The Product Structure</h3>
+    <p>This file defines <strong>what a product looks like</strong> in the database. It's like a blueprint.</p>
+
+    <h4>The Schema (Structure):</h4>
+    <pre><code>const productSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    enum: ['cars', 'realestate', 'devices', 'furniture', 'animals', 'services']
+  },
+  price: {
+    type: Number,
+    required: true,
+    min: 0
+  }
+});</code></pre>
+    <p><strong>Meaning:</strong> A product must have a title (text), category (one of the listed values), and price (number that can't be negative).</p>
+
+    <h2 id="how-to-use-the-api">5. How to Use the API</h2>
+    
+    <h3>Starting the Server:</h3>
+    <ol>
+        <li>Open terminal in the <code>Api</code> folder</li>
+        <li>Run: <code>npm start</code></li>
+        <li>You should see: "Server is running on http://localhost:3000"</li>
+    </ol>
+
+    <h3>Testing the API:</h3>
+    <h4>Using Browser:</h4>
+    <ul>
+        <li>Visit: <code>http://localhost:3000/api/products</code></li>
+        <li>You'll see all products in JSON format</li>
+    </ul>
+
+    <h4>Using curl (Terminal):</h4>
+    <pre><code># Get all products
+curl http://localhost:3000/api/products
+
+# Get products by category
+curl http://localhost:3000/api/products?category=cars
+
+# Get one product
+curl http://localhost:3000/api/products/PRODUCT_ID</code></pre>
+
+    <h2>Quick Reference Table</h2>
+    <table>
+        <tr>
+            <th>Action</th>
+            <th>Method</th>
+            <th>URL</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Get All</td>
+            <td>GET</td>
+            <td><code>/api/products</code></td>
+            <td>Get all products</td>
+        </tr>
+        <tr>
+            <td>Get One</td>
+            <td>GET</td>
+            <td><code>/api/products/:id</code></td>
+            <td>Get one product</td>
+        </tr>
+        <tr>
+            <td>Create</td>
+            <td>POST</td>
+            <td><code>/api/products</code></td>
+            <td>Add new product</td>
+        </tr>
+        <tr>
+            <td>Update</td>
+            <td>PUT</td>
+            <td><code>/api/products/:id</code></td>
+            <td>Update product</td>
+        </tr>
+        <tr>
+            <td>Delete</td>
+            <td>DELETE</td>
+            <td><code>/api/products/:id</code></td>
+            <td>Remove product</td>
+        </tr>
+        <tr>
+            <td>Search</td>
+            <td>GET</td>
+            <td><code>/api/products/search?q=query</code></td>
+            <td>Search products</td>
+        </tr>
+    </table>
+
+    <h2>Summary</h2>
+    <div class="success">
+        <h3>What You Learned:</h3>
+        <ul>
+            <li><strong>API</strong> = A way for applications to communicate</li>
+            <li><strong>Endpoints</strong> = Different URLs that do different things</li>
+            <li><strong>GET</strong> = Retrieve data</li>
+            <li><strong>POST</strong> = Create new data</li>
+            <li><strong>PUT</strong> = Update existing data</li>
+            <li><strong>DELETE</strong> = Remove data</li>
+            <li><strong>MongoDB</strong> = Database that stores your products</li>
+            <li><strong>Mongoose</strong> = Tool that helps Node.js talk to MongoDB</li>
+        </ul>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; color: #666;">
+        <em>This API was created for the Haraj marketplace project.</em>
+    </p>
+</body>
+</html>
+
